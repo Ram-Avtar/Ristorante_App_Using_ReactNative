@@ -40,7 +40,7 @@ class Home extends Component {
         };
     }
 
-    static navigationOptions = {
+    static defaultNavigationOptions = {
         title: 'Home'
     };
 

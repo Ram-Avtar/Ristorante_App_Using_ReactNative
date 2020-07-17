@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Menu from './MenuComponent';
 import Home from './HomeComponent';
 import Dishdetail from './DishdetailComponent';
+import Contact from './ContactComponent';
+import About from './AboutComponent';
 import {DISHES} from '../shared/dishes';
 import { View, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -16,7 +18,7 @@ const MenuNavigator = createStackNavigator({
     },
     {
         initialRouteName: 'Menu',
-        navigationOptions: {
+        defaultNavigationOptions: {
             headerStyle: {
                 backgroundColor: "#512DA8"
             },
@@ -33,7 +35,7 @@ export const MenuNavi = createAppContainer(MenuNavigator);
 const HomeNavigator = createStackNavigator({
     Home: { screen: Home }
   }, {
-    navigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
           backgroundColor: "#512DA8"
       },
@@ -46,21 +48,73 @@ const HomeNavigator = createStackNavigator({
 
 export const HomeNavi = createAppContainer(HomeNavigator);
 
+
+const ContactNavigator = createStackNavigator({
+    Contact: { screen: Contact }
+  }, {
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: {
+          backgroundColor: "#512DA8"
+      },
+      headerTitleStyle: {
+          color: "#fff"            
+      },
+      headerTintColor: "#fff"  
+    })
+});
+
+export const ContactNavi = createAppContainer(ContactNavigator);
+
+
+const AboutNavigator = createStackNavigator({
+    About: { screen: About }
+  }, {
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: {
+          backgroundColor: "#512DA8"
+      },
+      headerTitleStyle: {
+          color: "#fff"            
+      },
+      headerTintColor: "#fff"  
+    })
+});
+
+export const AboutNavi = createAppContainer(AboutNavigator);
+
+
+
+
 const MainNavigator = createDrawerNavigator({
     Home: 
       { screen: HomeNavi,
-        navigationOptions: {
+        defaultNavigationOptions: {
           title: 'Home',
           drawerLabel: 'Home'
         }
       },
+       About: 
+      { screen: AboutNavi,
+        defaultNavigationOptions: {
+          title: 'About',
+          drawerLabel: 'About Us'
+        },
+      },
     Menu: 
       { screen: MenuNavi,
-        navigationOptions: {
+        defaultNavigationOptions: {
           title: 'Menu',
           drawerLabel: 'Menu'
         }, 
-      }
+      },
+      Contact: 
+      { screen: ContactNavi,
+        defaultNavigationOptions: {
+          title: 'Contact',
+          drawerLabel: ''
+        }, 
+      },
+       
 }, {
   drawerBackgroundColor: '#D1C4E9'
 });

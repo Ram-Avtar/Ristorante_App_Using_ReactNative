@@ -35,7 +35,7 @@ class DishDetail extends Component {
         };
     }
 
-    static navigationOptions = {
+    static defaultNavigationOptions = {
         title: 'Dish Details'
     };
 
