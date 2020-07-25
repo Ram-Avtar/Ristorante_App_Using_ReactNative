@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, FlatList ,Text} from 'react-native';
+import { ScrollView,View, FlatList ,Text} from 'react-native';
 import { ListItem , Card} from 'react-native-elements';
 import { LEADERS } from '../shared/leaders';
 
@@ -30,7 +30,7 @@ class About extends Component{
 			leaders:LEADERS
 		};
 	}
-	static defaultNavigationOptions = {
+	static navigationOptions = {
         title: 'About'
     };
 	render(){
@@ -51,7 +51,7 @@ class About extends Component{
 
 		return(
 		
-			<ScrollView>
+			<ScrollView style={{flex: 1}}>
 				<History />
 				<Card title='Corporate Leadership'>
 				<FlatList 

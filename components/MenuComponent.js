@@ -13,7 +13,7 @@ class Menu extends Component {
         };
     }
 
-    static defaultNavigationOptions = {
+    static navigationOptions = {
         title: 'Menu'
     };
 
