@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View , ScrollView , FlatList} from 'react-native';
+import { Text, View , ScrollView , FlatList,SafeAreaView} from 'react-native';
 import { Card , Icon} from 'react-native-elements';
 import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
@@ -52,11 +52,11 @@ function RenderComments(props) {
     
     return (
         <Card title='Comments' >
-        <FlatList 
-            data={comments}
-            renderItem={renderCommentItem}
-            keyExtractor={item => item.id.toString()}
-            />
+            <FlatList 
+                data={comments}
+                renderItem={renderCommentItem}
+                keyExtractor={item => item.id.toString()}
+                />
         </Card>
     );
 }
