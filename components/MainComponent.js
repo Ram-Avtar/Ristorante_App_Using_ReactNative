@@ -11,6 +11,20 @@ import Constants from 'expo-constants';
 import { createAppContainer, SafeAreaView } from 'react-navigation';
 import {createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import { Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
+
+const mapStateToProps = state => {
+  return {
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  fetchDishes: () => dispatch(fetchDishes()),
+  fetchComments: () => dispatch(fetchComments()),
+  fetchPromos: () => dispatch(fetchPromos()),
+  fetchLeaders: () => dispatch(fetchLeaders()),
+})
 
 const MenuNavigator = createStackNavigator({
         Menu: { screen: Menu,
@@ -188,17 +202,14 @@ export const MainNavi = createAppContainer(MainNavigator);
 
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-   this.state = {
-      dishes: DISHES,
-      selectedDish: null
-    };
-  }
 
- onDishSelect(dishId) {
-      this.setState({selectedDish: dishId})
+  componentDidMount() {
+    this.props.fetchDishes();
+    this.props.fetchComments();
+    this.props.fetchPromos();
+    this.props.fetchLeaders();
   }
+ 
 
   render() {
  
@@ -234,4 +245,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Main;
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
