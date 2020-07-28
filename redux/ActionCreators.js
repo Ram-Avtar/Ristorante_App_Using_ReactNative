@@ -31,6 +31,54 @@ export const addComments = (comments) => ({
     payload: comments
 });
 
+
+
+
+export const addComment = (comment) => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
+});
+
+export const postComment = (dishId, rating, comment, author) => (dispatch) => {
+    const newComment = {
+        dishId: dishId,
+        rating: rating,
+        author: author,
+        comment: comment
+    };
+    newComment.date = new Date().toISOString();
+
+    return fetch(baseUrl + 'comments', {
+        method: 'POST',
+        body: JSON.stringify(newComment),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+    .then(response => {
+        if(response.ok) {
+            return response;
+        } else {
+            var error = new Error('Error' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        throw error;
+    })
+    .then(response => response.json())
+    .then(response => setTimeout(() => {dispatch(addComment(response))}, 2000))
+    .catch(error => { console.log('post comments', errorr.message); alert('Your comment cannot be posted\nError: ' + error.message); });
+};
+
+
+
+
+
+
+
 export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading());
@@ -67,6 +115,11 @@ export const addDishes = (dishes) => ({
     type: ActionTypes.ADD_DISHES,
     payload: dishes
 });
+
+
+
+
+
 
 export const fetchPromos = () => (dispatch) => {
     
@@ -105,6 +158,11 @@ export const addPromos = (promos) => ({
     payload: promos
 });
 
+
+
+
+
+
 export const fetchLeaders = () => (dispatch) => {
     
     dispatch(leadersLoading());
@@ -141,6 +199,11 @@ export const addLeaders = (leaders) => ({
     type: ActionTypes.ADD_LEADERS,
     payload: leaders
 });
+
+
+
+
+
 
 export const postFavorite = (dishId)  => (dispatch) => {
 
